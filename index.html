@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inke Holdings Limited | 農產品大宗貿易</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&family=Noto+Serif+TC:wght@600;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            dark: '#2b1d0e',      // 深咖啡
+                            deep: '#1d1309',
+                            primary: '#92400e',
+                            amber: '#b45309',
+                            accent: '#d97706',     // 麥金
+                            gold: '#f59e0b',
+                            light: '#fdf9f1'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['"Noto Serif TC"', 'serif'],
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        .glass-nav {
+            background: rgba(29, 19, 9, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(217, 119, 6, 0.3);
+        }
+
+        .hero-bg {
+            background-image: linear-gradient(rgba(29, 19, 9, 0.88), rgba(29, 19, 9, 0.72)), url('https://picsum.photos/id/292/1920/1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(146, 64, 14, 0.3);
+        }
+
+        .grain-bg {
+            background-image: linear-gradient(rgba(29, 19, 9, 0.96), rgba(29, 19, 9, 0.93)),
+                radial-gradient(circle at 25% 30%, rgba(245, 158, 11, 0.18) 0 2px, transparent 2px),
+                radial-gradient(circle at 70% 65%, rgba(217, 119, 6, 0.15) 0 2px, transparent 2px),
+                radial-gradient(circle at 50% 20%, rgba(245, 158, 11, 0.12) 0 2px, transparent 2px);
+            background-size: 100% 100%, 60px 60px, 70px 70px, 50px 50px;
+        }
+
+        .serif-title { font-family: 'Noto Serif TC', serif; }
+    </style>
+</head>
+<body class="bg-brand-light text-slate-700 antialiased overflow-x-hidden">
+
+    <!-- 頂部公告 -->
+    <div class="bg-brand-deep text-amber-200 text-xs py-2 px-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <span><i class="fas fa-seedling mr-2"></i>2026/27 年度大豆及穀物新季報價現已接受預訂。</span>
+            <span class="hidden md:block">大宗採購熱線：84060357</span>
+        </div>
+    </div>
+
+    <!-- 導航 -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 py-5">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-to-br from-brand-primary to-brand-accent rounded-xl flex items-center justify-center text-white text-xl shadow-lg shadow-amber-600/40">
+                    <i class="fas fa-wheat-awn"></i>
+                </div>
+                <div class="text-white">
+                    <h1 class="font-bold text-lg leading-tight font-display">Inke Holdings</h1>
+                    <p class="text-[10px] tracking-[0.3em] text-amber-200 uppercase">Commodity Trading</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex space-x-8 text-white text-sm font-medium">
+                <a href="#home" class="hover:text-amber-200 transition">首頁</a>
+                <a href="#about" class="hover:text-amber-200 transition">關於我們</a>
+                <a href="#commodities" class="hover:text-amber-200 transition">商品品類</a>
+                <a href="#network" class="hover:text-amber-200 transition">全球網絡</a>
+                <a href="#contact" class="hover:text-amber-200 transition">聯絡我們</a>
+            </div>
+
+            <a href="#contact" class="hidden md:inline-block px-6 py-2.5 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-bold rounded-full hover:opacity-90 transition duration-300 text-sm shadow-lg shadow-amber-600/30">
+                查詢報價
+            </a>
+
+            <button class="md:hidden text-white text-2xl"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header id="home" class="hero-bg min-h-screen flex items-center relative overflow-hidden">
+        <div class="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center mt-16">
+            <div class="text-white">
+                <span class="inline-block py-1 px-4 bg-amber-400/15 border border-amber-400/50 rounded-full text-amber-200 text-sm mb-6 tracking-widest reveal">FROM FIELD TO MARKET</span>
+                <h2 class="text-4xl md:text-6xl font-black mb-6 leading-tight font-display reveal" style="transition-delay: 100ms;">
+                    連結田園與餐桌，<br><span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-brand-gold">穩定全球供應</span>
+                </h2>
+                <p class="text-lg text-gray-200 mb-10 leading-relaxed reveal" style="transition-delay: 200ms;">
+                    Inke Holdings Limited 是香港領先的農產品大宗貿易商，專營穀物、油籽、食糖及冷凍食品的全球採購與分銷，為食品加工及餐飲業提供穩定可靠的原料供應。
+                </p>
+                <div class="flex flex-col md:flex-row gap-4 reveal" style="transition-delay: 300ms;">
+                    <a href="#commodities" class="px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-bold rounded-lg hover:opacity-90 transition shadow-lg shadow-amber-600/30">
+                        瀏覽商品品類 <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                    <a href="#contact" class="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg font-bold hover:bg-white/20 transition">
+                        索取報價
+                    </a>
+                </div>
+            </div>
+            <div class="hidden md:block reveal" style="transition-delay: 200ms;">
+                <div class="bg-white/5 backdrop-blur-lg border border-white/10 rounded-2xl p-8 shadow-2xl">
+                    <div class="flex items-center justify-between mb-6">
+                        <h4 class="font-bold text-white"><i class="fas fa-chart-simple text-amber-300 mr-2"></i>今日大宗行情</h4>
+                        <span class="text-xs text-amber-300 px-3 py-1 bg-amber-400/10 rounded-full">MARKET</span>
+                    </div>
+                    <div class="space-y-3">
+                        <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4">
+                            <i class="fas fa-wheat-awn text-xl text-amber-300"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-white">美國黃豆</p>
+                                <p class="text-xs text-gray-200">CBOT 期價基準 · 產地直採</p>
+                            </div>
+                            <span class="text-xs text-emerald-300 font-bold">▲ 2.3%</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4">
+                            <i class="fas fa-wheat-awn text-xl text-amber-300"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-white">澳洲小麥</p>
+                                <p class="text-xs text-gray-200">APW 標準 · 季度合約</p>
+                            </div>
+                            <span class="text-xs text-emerald-300 font-bold">▲ 1.1%</span>
+                        </div>
+                        <div class="flex items-center gap-4 bg-white/5 rounded-xl p-4">
+                            <i class="fas fa-snowflake text-xl text-amber-300"></i>
+                            <div class="flex-1">
+                                <p class="text-sm font-bold text-white">巴西冷凍牛肉</p>
+                                <p class="text-xs text-gray-200">IBP 廠號 · 船運在途</p>
+                            </div>
+                            <span class="text-xs text-red-300 font-bold">▼ 0.8%</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-200 mt-5"><i class="fas fa-newspaper text-amber-300 mr-1"></i>每日更新 · 覆蓋全球 15 個主要期貨市場</p>
+                </div>
+            </div>
+        </div>
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce text-white/50">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </header>
+
+    <!-- 數據統計 -->
+    <section class="py-10 bg-white relative -mt-10 z-20 shadow-xl rounded-t-3xl mx-4 md:mx-10">
+        <div class="container mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div class="reveal">
+                <div class="font-display text-4xl font-bold text-brand-primary mb-2 counter" data-target="120">0</div>
+                <div class="text-gray-500 text-sm">萬噸年交易量</div>
+            </div>
+            <div class="reveal" style="transition-delay: 100ms;">
+                <div class="font-display text-4xl font-bold text-brand-accent mb-2 counter" data-target="30">0</div>
+                <div class="text-gray-500 text-sm">+ 產地直採國家</div>
+            </div>
+            <div class="reveal" style="transition-delay: 200ms;">
+                <div class="font-display text-4xl font-bold text-brand-primary mb-2 counter" data-target="500">0</div>
+                <div class="text-gray-500 text-sm">+ 加工及餐飲客戶</div>
+            </div>
+            <div class="reveal" style="transition-delay: 300ms;">
+                <div class="font-display text-4xl font-bold text-brand-accent mb-2 counter" data-target="25">0</div>
+                <div class="text-gray-500 text-sm">年穩定供應紀錄</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 關於我們 -->
+    <section id="about" class="py-20 bg-brand-light">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <div class="lg:w-1/2 relative reveal">
+                    <img src="https://picsum.photos/id/240/800/600" alt="穀物倉儲" class="rounded-2xl shadow-2xl z-10 relative">
+                    <div class="absolute -bottom-8 -right-8 bg-gradient-to-br from-brand-primary to-brand-accent text-white px-8 py-6 rounded-2xl shadow-xl">
+                        <p class="font-display font-bold text-3xl">25</p>
+                        <p class="text-sm text-amber-100">年大宗貿易深耕</p>
+                    </div>
+                </div>
+                <div class="lg:w-1/2 reveal">
+                    <h3 class="text-brand-accent font-bold tracking-[0.3em] uppercase mb-3">關於Inke Holdings Limited</h3>
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mb-6 leading-snug serif-title">穩健經營，<br>供應鏈的磐石</h2>
+                    <p class="text-gray-600 mb-6 leading-relaxed">
+                        Inke Holdings Limited 創立於 2001 年，總部位於 31/F TWR TWO TIMES SQ 1 MATHESON ST 香港上環，專注農產品大宗商品的國際貿易與風險管理。
+                    </p>
+                    <p class="text-gray-600 mb-8 leading-relaxed">
+                        我們與美國、巴西、澳洲、泰國及越南等產地的大型合作社及出口商建立長期合約關係，並運用期貨對沖工具為客戶鎖定價格，確保供應穩定與成本可控。
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 mb-8">
+                        <div class="flex items-center"><i class="fas fa-certificate text-brand-accent mr-2"></i> HACCP 認證倉儲</div>
+                        <div class="flex items-center"><i class="fas fa-certificate text-brand-accent mr-2"></i> 註冊商品交易商</div>
+                        <div class="flex items-center"><i class="fas fa-certificate text-brand-accent mr-2"></i> ISO 22000 認證</div>
+                        <div class="flex items-center"><i class="fas fa-certificate text-brand-accent mr-2"></i> 倫敦 LME 會員夥伴</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 商品品類 -->
+    <section id="commodities" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-[0.3em]">COMMODITIES</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4 serif-title">六大商品品類</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">覆蓋食品工業與餐飲供應鏈的關鍵原料。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="card-hover p-8 bg-brand-light rounded-2xl border border-gray-100 transition-all duration-300 reveal">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-wheat-awn"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">穀物類</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        小麥、玉米、稻米及大麥，多產地可選，散裝或袋裝交貨。
+                    </p>
+                    <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="card-hover p-8 bg-brand-light rounded-2xl border border-gray-100 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-seedling"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">油籽油料</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        大豆、葵花籽、棕櫚油及菜籽油，期現貨結合靈活定價。
+                    </p>
+                    <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="card-hover p-8 bg-brand-light rounded-2xl border border-gray-100 transition-all duration-300 reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-cubes"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">食糖</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        原糖與精製糖，巴西及泰國產地直供，食品廠長期合約。
+                    </p>
+                    <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="card-hover p-8 bg-brand-light rounded-2xl border border-gray-100 transition-all duration-300 reveal">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-snowflake"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">冷凍食品</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        冷凍牛肉、豬肉、海產及蔬果，全程 -18°C 冷鏈管理。
+                    </p>
+                    <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="card-hover p-8 bg-brand-light rounded-2xl border border-gray-100 transition-all duration-300 reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-mug-hot"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800">咖啡可可</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-4">
+                        生咖啡豆與可可豆，哥倫比亞、越南及西非產地直採。
+                    </p>
+                    <a href="#contact" class="text-brand-primary text-sm font-semibold hover:underline">了解更多 &rarr;</a>
+                </div>
+
+                <div class="card-hover p-8 bg-brand-dark rounded-2xl transition-all duration-300 reveal text-white" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-amber-400/20 text-amber-300 rounded-xl flex items-center justify-center text-2xl mb-6">
+                        <i class="fas fa-arrows-rotate"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">定制代採購</h3>
+                    <p class="text-gray-200 text-sm leading-relaxed mb-4">
+                        根據客戶規格全球尋源、品質檢驗及價格對沖一站式代採服務。
+                    </p>
+                    <a href="#contact" class="text-amber-300 text-sm font-semibold hover:underline">委託採購 &rarr;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 全球網絡 -->
+    <section id="network" class="py-20 grain-bg text-white relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="text-amber-300 font-bold tracking-[0.3em]">GLOBAL NETWORK</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-4 serif-title">全球採購網絡</h2>
+                <p class="text-gray-300 max-w-xl mx-auto">六大產區佈點，覆蓋主要農產品供應鏈。</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="p-8 bg-white/5 border border-white/10 rounded-2xl text-center reveal">
+                    <div class="w-16 h-16 bg-amber-400/15 text-amber-300 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5">
+                        <i class="fas fa-earth-americas"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-3">美洲產區</h4>
+                    <p class="text-gray-200 text-sm">美國大豆玉米 · 巴西牛肉食糖 · 阿根廷穀物</p>
+                </div>
+                <div class="p-8 bg-white/5 border border-white/10 rounded-2xl text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-16 h-16 bg-amber-400/15 text-amber-300 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5">
+                        <i class="fas fa-earth-oceania"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-3">澳洲產區</h4>
+                    <p class="text-gray-200 text-sm">澳洲小麥大麥 · 乳製品 · 牛羊肉出口商夥伴</p>
+                </div>
+                <div class="p-8 bg-white/5 border border-white/10 rounded-2xl text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-16 h-16 bg-amber-400/15 text-amber-300 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-5">
+                        <i class="fas fa-earth-asia"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-3">亞洲產區</h4>
+                    <p class="text-gray-200 text-sm">泰國香米食糖 · 越南咖啡 · 中國內地農產品</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 流程 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl font-bold text-brand-dark serif-title">貿易服務流程</h2>
+                <p class="text-gray-500 mt-2">從詢價到交付，專業團隊全程跟進</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+                <div class="hidden md:block absolute top-12 left-[10%] right-[10%] h-0.5 bg-amber-200"></div>
+
+                <div class="text-center reveal">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-brand-primary shadow-lg mb-6">
+                        <i class="fas fa-file-signature text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">1. 詢價鎖價</h4>
+                    <p class="text-gray-500 text-sm px-4">即時報價與期貨鎖價。</p>
+                </div>
+
+                <div class="text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-brand-primary shadow-lg mb-6">
+                        <i class="fas fa-file-contract text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">2. 合約簽訂</h4>
+                    <p class="text-gray-500 text-sm px-4">品質條款與交期確認。</p>
+                </div>
+
+                <div class="text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-24 h-24 bg-brand-light mx-auto rounded-full flex items-center justify-center border-4 border-brand-primary shadow-lg mb-6">
+                        <i class="fas fa-ship text-3xl text-brand-primary"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">3. 裝運檢驗</h4>
+                    <p class="text-gray-500 text-sm px-4">SGS 檢驗與海運安排。</p>
+                </div>
+
+                <div class="text-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-24 h-24 bg-brand-deep mx-auto rounded-full flex items-center justify-center border-4 border-brand-accent shadow-lg mb-6">
+                        <i class="fas fa-boxes-packing text-3xl text-brand-accent"></i>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">4. 清關交付</h4>
+                    <p class="text-gray-500 text-sm px-4">報關配送至指定倉庫。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- 供應商夥伴心聲 -->
+    <section class="py-20 bg-brand-light">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-[0.3em]">TESTIMONIALS</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4 serif-title">供應商夥伴心聲</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">聽聽長期合作夥伴對我們貿易服務的評價。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl shadow-lg p-8 reveal">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-full flex items-center justify-center text-xl font-bold">王</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">王建國</h4>
+                            <p class="text-sm text-gray-500">华南食品加工厂 · 东莞</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">「合作十年，穀物供應從未斷過。價格透明，期貨鎖價幫我們控制了成本，非常穩健的夥伴。」</p>
+                    <div class="text-amber-400 text-sm">★★★★★</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-8 reveal" style="transition-delay: 100ms;">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 bg-amber-100 text-brand-accent rounded-full flex items-center justify-center text-xl font-bold">M</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">Maria Santos</h4>
+                            <p class="text-sm text-gray-500">São Paulo Grains Export · Brazil</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">「他們對品質檢驗的要求非常嚴格，SGS 報告全程可追溯。付款準時，是值得信賴的長期買家。」</p>
+                    <div class="text-amber-400 text-sm">★★★★★</div>
+                </div>
+                <div class="bg-white rounded-2xl shadow-lg p-8 reveal" style="transition-delay: 200ms;">
+                    <div class="flex items-center gap-4 mb-5">
+                        <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-full flex items-center justify-center text-xl font-bold">陳</div>
+                        <div>
+                            <h4 class="font-bold text-gray-800">陳大文</h4>
+                            <p class="text-sm text-gray-500">大文餐飲集團 · 香港</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-4">「冷凍牛肉品質穩定，冷鏈管理到位。每月固定供貨從未延誤，讓我們餐廳運營無後顧之憂。」</p>
+                    <div class="text-amber-400 text-sm">★★★★★</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 供應鏈保障服務 -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <span class="text-brand-accent font-bold tracking-[0.3em]">SUPPLY CHAIN</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-dark mt-3 mb-4 serif-title">供應鏈保障服務</h2>
+                <p class="text-gray-500 max-w-xl mx-auto">從產地到倉庫，全方位保障您的採購安全。</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="p-6 bg-brand-light rounded-2xl border border-gray-100 text-center reveal">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-shield-halved"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">SGS 檢驗</h4>
+                    <p class="text-gray-500 text-sm">每批次獨立抽檢，出具國際認可檢驗報告。</p>
+                </div>
+                <div class="p-6 bg-brand-light rounded-2xl border border-gray-100 text-center reveal" style="transition-delay: 100ms;">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-temperature-low"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">冷鏈監控</h4>
+                    <p class="text-gray-500 text-sm">全程溫濕度記錄，到貨可追溯。</p>
+                </div>
+                <div class="p-6 bg-brand-light rounded-2xl border border-gray-100 text-center reveal" style="transition-delay: 200ms;">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">價格對沖</h4>
+                    <p class="text-gray-500 text-sm">運用期貨工具為客戶鎖定採購成本。</p>
+                </div>
+                <div class="p-6 bg-brand-light rounded-2xl border border-gray-100 text-center reveal" style="transition-delay: 300ms;">
+                    <div class="w-14 h-14 bg-amber-100 text-brand-primary rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h4 class="font-bold text-gray-800 mb-2">保稅倉儲</h4>
+                    <p class="text-gray-500 text-sm">香港保稅區倉儲，靈活分批出貨。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 bg-gradient-to-r from-brand-deep to-brand-dark relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle at 30% 40%, #d97706 2px, transparent 2px); background-size: 30px 30px;"></div>
+        <div class="container mx-auto px-6 text-center relative z-10 text-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 serif-title">穩定供應，從一次詢價開始</h2>
+            <p class="text-xl text-gray-100 mb-10">提交您的採購需求，交易員 2 小時內回覆報價。</p>
+            <a href="#contact" class="inline-block px-10 py-4 bg-gradient-to-r from-brand-primary to-brand-accent text-white font-bold rounded-full shadow-xl hover:opacity-90 transform hover:scale-105 transition duration-300">
+                免費詢價
+            </a>
+        </div>
+    </section>
+
+    <!-- 頁腳 -->
+    <footer id="contact" class="bg-brand-deep text-gray-200 pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                <div>
+                    <h3 class="font-bold text-white text-2xl mb-6 font-display">Inke Holdings Limited</h3>
+                    <p class="mb-6 text-sm leading-relaxed">
+                        Inke Holdings Limited，以穩定與誠信，守護每一條供應鏈。
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-accent hover:text-white transition"><i class="fab fa-weixin"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">快速連結</h4>
+                    <ul class="space-y-3 text-sm">
+                        <li><a href="#home" class="hover:text-amber-300 transition">首頁</a></li>
+                        <li><a href="#about" class="hover:text-amber-300 transition">關於我們</a></li>
+                        <li><a href="#commodities" class="hover:text-amber-300 transition">商品品類</a></li>
+                        <li><a href="#network" class="hover:text-amber-300 transition">全球網絡</a></li>
+                        <li><a href="#" class="hover:text-amber-300 transition">每日行情</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">聯絡方式</h4>
+                    <ul class="space-y-4 text-sm">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3 text-amber-300"></i>
+                            <span>31/F TWR TWO TIMES SQ 1 MATHESON ST</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3 text-amber-300"></i>
+                            <a href="mailto:contact@inkeholdings.bond" class="hover:text-white transition">contact@inkeholdings.bond</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone-alt mr-3 text-amber-300"></i>
+                            <a href="tel:84060357" class="hover:text-white transition text-lg font-bold">84060357</a>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-globe mr-3 text-amber-300"></i>
+                            <span>inkeholdings.bond</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-white font-bold mb-6">採購詢價</h4>
+                    <form onsubmit="event.preventDefault(); alert('感謝您的詢價，交易員會於2小時內與您聯絡！');" class="space-y-3">
+                        <input type="text" placeholder="您的稱呼" class="w-full bg-white/5 border border-white/10 rounded py-3 px-4 text-white focus:ring-2 focus:ring-amber-300 outline-none text-sm">
+                        <input type="text" placeholder="公司名稱" class="w-full bg-white/5 border border-white/10 rounded py-3 px-4 text-white focus:ring-2 focus:ring-amber-300 outline-none text-sm">
+                        <textarea placeholder="需要的品類及數量" rows="3" class="w-full bg-white/5 border border-white/10 rounded py-3 px-4 text-white focus:ring-2 focus:ring-amber-300 outline-none text-sm"></textarea>
+                        <button type="submit" class="w-full bg-gradient-to-r from-brand-primary to-brand-accent text-white font-bold py-3 rounded hover:opacity-90 transition">提交詢價</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center text-xs">
+                <p>&copy; 2026 Inke Holdings Limited 版權所有</p>
+                <div class="mt-4 md:mt-0 space-x-6">
+                    <a href="#" class="hover:text-amber-300">私隱政策</a>
+                    <a href="#" class="hover:text-amber-300">風險披露</a>
+                    <a href="#" class="hover:text-amber-300">條款及細則</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="#home" id="backToTop" class="fixed bottom-8 right-8 bg-gradient-to-r from-brand-primary to-brand-accent text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg transform translate-y-20 transition-all duration-300 z-40 hover:opacity-90">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const backToTop = document.getElementById('backToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass-nav', 'py-2');
+                navbar.classList.remove('py-5');
+                backToTop.classList.remove('translate-y-20');
+            } else {
+                navbar.classList.remove('glass-nav', 'py-2');
+                navbar.classList.add('py-5');
+                backToTop.classList.add('translate-y-20');
+            }
+        });
+
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    if (entry.target.querySelector('.counter') && !entry.target.dataset.counted) {
+                        startCounters(entry.target);
+                        entry.target.dataset.counted = true;
+                    }
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        function startCounters(section) {
+            const counters = section.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const duration = 2000;
+                const step = target / (duration / 16);
+                let current = 0;
+                const updateCounter = () => {
+                    current += step;
+                    if (current < target) {
+                        counter.innerText = Math.ceil(current);
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+                updateCounter();
+            });
+        }
+
+        document.querySelector('.fa-bars')?.parentElement?.addEventListener('click', () => {
+            alert('移動端菜單點擊 (此處可擴展側邊欄邏輯)');
+        });
+    </script>
+</body>
+</html>
